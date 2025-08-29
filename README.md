@@ -2,66 +2,55 @@
 
 Homey integration for [OnlyCat](https://www.onlycat.com/) smart pet doors.
 
+## Disclaimers
+This app is an unofficial integration. I do not own or have any relation with onlycat, its brandname or its products.
+Usage of this app is at your own risk. 
+
 ## Features
 
 * 🏠 Know whether your pet is home or on the hunt using the Pet Presence sensor
-  * 🐾 In case your pet chooses another exit, you can override the presence using the Set Pet Location action
-* 🚪 Manage the active door policy manually or using automations
 * 🔎 Keep track of your device and build automations with it using sensors for:
    * 📶 Flap connection status
    * 🕒 Flap events (timestamp, RFID codes, trigger source, event classification)
    * 🐭 Contraband detection
    * 🔐 Lock state
+
+## On the roadmap for later:    
 * 🔄 Control your flap remotely using reboot and remote unlock options
+* 🚪 Manage the active door policy manually or using automations
+* 🐾 In case your pet chooses another exit, you can override the presence using the Set Pet Location action
 
 ## Flow Cards
 
 ### Triggers
 - **Pet Detected**: Triggers when a pet is detected entering or exiting
 - **Contraband Detected**: Triggers when contraband is detected by the device
-- **Device Connected**: Triggers when the device connects or disconnects
+- **Device (Dis)Connected**: Triggers when the device connects or disconnects
 
 ### Conditions
 - **Pet is Home**: Check if a specific pet is currently at home
 - **Device is Locked**: Check if the OnlyCat device is currently locked
 
 ### Actions
-- **Unlock Device**: Unlock the OnlyCat device
-- **Lock Device**: Lock the OnlyCat device
-- **Reboot Device**: Reboot the OnlyCat device
-- **Set Pet Location**: Manually set the location of a pet
+For now the app provides exclusively read only capabilities. 
 
-## Installation
+## Installation / setup
 
-1. Open the Homey app
-2. Go to the App Store
-3. Search for "OnlyCat"
-4. Install the app
+### Install the app
+1. Add OnlyCat from the homey app store
+2. Open the OnlyCat app in Homey
 
-
-## Configuration
-
-1. Open the OnlyCat app in Homey
-2. Enter your OnlyCat device token
-   * You can find your token in the OnlyCat app under "Account"
-3. The app will automatically connect to your OnlyCat device(s) 
-
-## Adding Devices
+### Retrieve your onlycat device token
+1. Install and setup your onlycat flap with the onlycat app
+2. Enable "Developer Mode" in the settings page
+3. Write down your OnlyCat device token for later use when adding to homey
 
 ### Adding OnlyCat Devices
 1. Go to Devices in the Homey app
 2. Click the "+" button to add a new device
 3. Select "OnlyCat Device"
 4. Choose your device from the list
-5. Complete the pairing process
-
-### Adding Pets
-
-1. Go to Devices in the Homey app
-2. Click the "+" button to add a new device
-3. Select "OnlyCat Pet"
-4. Choose your pet from the list
-5. Complete the pairing process
+5. Complete the pairing process (You need to enter the device token, as retrieved by the steps above, here)
 
 ## Common Automation Ideas
 
@@ -79,13 +68,10 @@ Homey integration for [OnlyCat](https://www.onlycat.com/) smart pet doors.
 - **Contact Alarm**: Door status (connected/disconnected)
 - **Motion Alarm**: Motion detection
 - **Presence**: Pet presence detection
-- **Temperature**: Device temperature (if available)
-- **Humidity**: Device humidity (if available)
 
 ### OnlyCat Pet
 - **Presence**: Pet location (home/away)
 - **Motion Alarm**: Pet activity detection
-- **Temperature**: Pet temperature (if available)
 
 ## Limitations
 
@@ -102,29 +88,20 @@ Currently, the following features of the OnlyCat app are not yet included in the
 - Check that your OnlyCat device is online
 
 ### Device Not Found
-- Make sure your OnlyCat device is properly set up in the OnlyCat app
+- Make sure your OnlyCat device is online in the OnlyCat app
 - Try refreshing the device list
-- Check that your device token has the correct permissions
 
 ### Pet Not Detected
 - Verify the pet's RFID tag is properly registered in the OnlyCat app
-- Check that the pet has been detected by the device recently
-- Ensure the pet's RFID tag is working correctly
+- Check that the pet has been detected by the device recently, using the app
 
 ## Contributing
 
 Contributions are welcome! If you have ideas for new features & improvements or want to report a bug,
 please open an issue or submit a pull request.
 
-
-
 ## License
-
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Support
 
-For support, please contact:
-- Email: support@onlycat.com
-- GitHub Issues: https://github.com/OnlyCatAI/onlycat-homey/issues
 
