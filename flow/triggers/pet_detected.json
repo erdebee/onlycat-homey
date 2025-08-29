@@ -1,0 +1,43 @@
+{
+  "id": "pet_detected",
+  "title": {
+    "en": "Pet Detected"
+  },
+  "titleFormatted": {
+    "en": "Pet Detected"
+  },
+  "hint": {
+    "en": "Triggers when a pet is detected by the OnlyCat device"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=onlycat"
+    },
+    {
+      "name": "pet",
+      "type": "device",
+      "filter": "driver_id=onlycat"
+    },
+    {
+      "name": "direction",
+      "type": "dropdown",
+      "values": [
+        {
+          "id": "in",
+          "label": {
+            "en": "Entering"
+          }
+        },
+        {
+          "id": "out",
+          "label": {
+            "en": "Exiting"
+          }
+        }
+      ]
+    }
+  ]
+}
+

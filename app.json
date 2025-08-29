@@ -1,0 +1,262 @@
+{
+  "id": "com.onlycat.app",
+  "version": "1.0.0",
+  "compatibility": ">=12.2.0",
+  "sdk": 3,
+  "brandColor": "#0084ff",
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "OnlyCat"
+  },
+  "description": {
+    "en": "Control and monitor your OnlyCat smart pet door"
+  },
+  "category": [
+    "climate"
+  ],
+  "permissions": [
+  ],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png"
+  },
+  "author": {
+    "name": "OnlyCat AI",
+    "email": "support@onlycat.com"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "OnlyCat AI",
+        "email": "support@onlycat.com"
+      }
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/OnlyCatAI/onlycat-homey/issues"
+  },
+  "homepage": "https://github.com/OnlyCatAI/onlycat-homey#readme",
+  "support": "mailto:support@onlycat.com",
+  "drivers": [
+    {
+      "id": "onlycat",
+      "name": {
+        "en": "OnlyCat"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_motion",
+        "alarm_presence"
+      ],
+      "capabilitiesOptions": {
+        "alarm_motion": {
+          "title": {
+            "en": "Motion detection"
+          }
+        },
+        "alarm_presence": {
+          "title": {
+            "en": "Pet is home"
+          }
+        }
+      },
+      "images": {
+        "small": "/drivers/onlycat/assets/small.png",
+        "large": "/drivers/onlycat/assets/large.png",
+        "xlarge": "/drivers/onlycat/assets/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "token_input"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": { "next": "add_devices" }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ]
+    }
+  ],
+  "flow": {
+    "triggers": [
+      {
+        "id": "pet_detected",
+        "title": {
+          "en": "Pet Detected"
+        },
+        "hint": {
+          "en": "Triggers when a pet is detected by the OnlyCat device"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=onlycat"
+          },
+          {
+            "name": "pet",
+            "type": "device",
+            "filter": "driver_id=onlycat"
+          },
+          {
+            "name": "direction",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "in",
+                "label": {
+                  "en": "Entering"
+                }
+              },
+              {
+                "id": "out",
+                "label": {
+                  "en": "Exiting"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "contraband_detected",
+        "title": {
+          "en": "Contraband Detected"
+        },
+        "hint": {
+          "en": "Triggers when contraband is detected by the OnlyCat device"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=onlycat"
+          }
+        ]
+      },
+      {
+        "id": "device_connected",
+        "title": {
+          "en": "Device Connected"
+        },
+        "hint": {
+          "en": "Triggers when the OnlyCat device connects or disconnects"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=onlycat"
+          },
+          {
+            "name": "connected",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "true",
+                "label": {
+                  "en": "Connected"
+                }
+              },
+              {
+                "id": "false",
+                "label": {
+                  "en": "Disconnected"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "unknown_pet_detected",
+        "title": {
+          "en": "Unknown Pet Detected"
+        },
+        "hint": {
+          "en": "Triggers when an unknown pet (unregistered RFID tag) is detected by the OnlyCat device"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=onlycat"
+          },
+          {
+            "name": "rfidCode",
+            "type": "text",
+            "title": {
+              "en": "RFID Code"
+            },
+            "placeholder": {
+              "en": "The RFID code of the unknown pet"
+            }
+          },
+          {
+            "name": "direction",
+            "type": "dropdown",
+            "title": {
+              "en": "Direction"
+            },
+            "values": [
+              {
+                "id": "in",
+                "label": {
+                  "en": "Entering"
+                }
+              },
+              {
+                "id": "out",
+                "label": {
+                  "en": "Exiting"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "pet_is_home",
+        "title": {
+          "en": "Pet is Home"
+        },
+        "hint": {
+          "en": "Check if a specific pet is currently at home"
+        },
+        "args": [
+          {
+            "name": "pet",
+            "type": "device",
+            "filter": "driver_id=onlycat"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "reboot_device",
+        "title": {
+          "en": "Reboot Device"
+        },
+        "hint": {
+          "en": "Reboot the OnlyCat device"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=onlycat"
+          }
+        ]
+      }
+    ]
+  }
+}

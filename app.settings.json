@@ -1,0 +1,8 @@
+{
+  "id": "settings",
+  "title": {
+    "en": "Settings"
+  },
+  "handler": "app.settings.js"
+}
+

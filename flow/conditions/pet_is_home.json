@@ -1,0 +1,21 @@
+{
+  "id": "pet_is_home",
+  "title": {
+    "en": "Pet is Home"
+  },
+  "titleFormatted": {
+    "en": "Pet is Home"
+  },
+  "hint": {
+    "en": "Check if a specific pet is currently at home"
+  },
+  "args": [
+    {
+      "name": "pet",
+      "type": "device",
+      "filter": "driver_id=onlycat"
+    }
+  ]
+}
+
+

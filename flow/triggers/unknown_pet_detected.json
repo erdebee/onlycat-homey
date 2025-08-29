@@ -1,0 +1,50 @@
+{
+  "id": "unknown_pet_detected",
+  "title": {
+    "en": "Unknown Pet Detected"
+  },
+  "titleFormatted": {
+    "en": "Unknown Pet Detected"
+  },
+  "hint": {
+    "en": "Triggers when an unknown pet (unregistered RFID tag) is detected by the OnlyCat device"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=onlycat"
+    },
+    {
+      "name": "rfidCode",
+      "type": "text",
+      "title": {
+        "en": "RFID Code"
+      },
+      "placeholder": {
+        "en": "The RFID code of the unknown pet"
+      }
+    },
+    {
+      "name": "direction",
+      "type": "dropdown",
+      "title": {
+        "en": "Direction"
+      },
+      "values": [
+        {
+          "id": "in",
+          "label": {
+            "en": "Entering"
+          }
+        },
+        {
+          "id": "out",
+          "label": {
+            "en": "Exiting"
+          }
+        }
+      ]
+    }
+  ]
+}

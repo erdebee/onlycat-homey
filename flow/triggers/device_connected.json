@@ -1,0 +1,38 @@
+{
+  "id": "device_connected",
+  "title": {
+    "en": "Device Connected"
+  },
+  "titleFormatted": {
+    "en": "Device Connected"
+  },
+  "hint": {
+    "en": "Triggers when the OnlyCat device connects or disconnects"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=onlycat"
+    },
+    {
+      "name": "connected",
+      "type": "dropdown",
+      "values": [
+        {
+          "id": "true",
+          "label": {
+            "en": "Connected"
+          }
+        },
+        {
+          "id": "false",
+          "label": {
+            "en": "Disconnected"
+          }
+        }
+      ]
+    }
+  ]
+}
+

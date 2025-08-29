@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>OnlyCat Token Input</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0084ff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .instructions {
+            background-color: #f8f9fa;
+            border-left: 4px solid #0084ff;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+        .instructions h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .instructions ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .instructions li {
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #0084ff;
+        }
+        .error {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        .button {
+            background-color: #0084ff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+        .button:hover {
+            background-color: #0066cc;
+        }
+        .button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #0084ff;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 OnlyCat Device Token</h1>
+        
+        <div class="instructions">
+            <h3>How to find your device token:</h3>
+            <ol>
+                <li>Open the OnlyCat app on your phone</li>
+                <li>Go to the "Account" section</li>
+                <li>Look for "Device Token" or "API Token"</li>
+                <li>Copy the token (it's a long string of letters and numbers)</li>
+                <li>Paste it in the field below</li>
+            </ol>
+            <p><strong>Note:</strong> If you can't find the token in the app, please contact OnlyCat support.</p>
+        </div>
+        
+        <form id="tokenForm">
+            <div class="form-group">
+                <label for="token">Device Token:</label>
+                <input type="text" id="token" name="token" placeholder="Enter your OnlyCat device token" required>
+                <div class="error" id="error">Invalid token. Please check and try again.</div>
+            </div>
+            
+            <button type="submit" class="button" id="submitBtn">Connect to OnlyCat</button>
+        </form>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Connecting to OnlyCat...</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('tokenForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const token = document.getElementById('token').value.trim();
+            const submitBtn = document.getElementById('submitBtn');
+            const loading = document.getElementById('loading');
+            const error = document.getElementById('error');
+            
+            if (!token) {
+                error.style.display = 'block';
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            loading.style.display = 'block';
+            error.style.display = 'none';
+            
+            try {
+                const result = await Homey.emit('token', token);
+                
+                if (result && result.success) {
+                    // Token is valid, proceed to next step
+                    Homey.showView('list_devices');
+                } else {
+                    // Show error
+                    error.textContent = (result && result.error) || 'Invalid token. Please check and try again.';
+                    error.style.display = 'block';
+                }
+            } catch (err) {
+                console.error('Token validation error:', err);
+                error.textContent = 'Connection failed. Please check your internet connection and try again.';
+                error.style.display = 'block';
+            } finally {
+                // Hide loading state
+                submitBtn.disabled = false;
+                loading.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

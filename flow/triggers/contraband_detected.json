@@ -1,0 +1,20 @@
+{
+  "id": "contraband_detected",
+  "title": {
+    "en": "Contraband Detected"
+  },
+  "titleFormatted": {
+    "en": "Contraband Detected"
+  },
+  "hint": {
+    "en": "Triggers when contraband is detected by the OnlyCat device"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=onlycat"
+    }
+  ]
+}
+

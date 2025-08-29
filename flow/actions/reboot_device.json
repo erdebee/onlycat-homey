@@ -1,0 +1,20 @@
+{
+  "id": "reboot_device",
+  "title": {
+    "en": "Reboot Device"
+  },
+  "titleFormatted": {
+    "en": "Reboot Device"
+  },
+  "hint": {
+    "en": "Reboot the OnlyCat device"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=onlycat"
+    }
+  ]
+}
+

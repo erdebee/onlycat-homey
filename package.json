@@ -1,0 +1,40 @@
+{
+  "name": "nl.pulsive.onlycat-homey",
+  "version": "1.0.0",
+  "description": "OnlyCat smart pet door integration for Homey",
+  "main": "app.js",
+  "scripts": {
+    "run": "homey app run",
+    "build": "homey app build",
+    "deploy": "homey app deploy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "homey",
+    "onlycat",
+    "pet",
+    "door",
+    "rfid",
+    "smart"
+  ],
+  "author": "OnlyCat AI",
+  "license": "MIT",
+  "dependencies": {
+    "socket.io-client": "^4.7.2",
+    "athom-api": "^3.9.2"
+  },
+  "devDependencies": {
+    "homey": "^3.9.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OnlyCatAI/onlycat-homey.git"
+  },
+  "bugs": {
+    "url": "https://github.com/OnlyCatAI/onlycat-homey/issues"
+  },
+  "homepage": "https://github.com/OnlyCatAI/onlycat-homey#readme"
+}
